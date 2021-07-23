@@ -1,0 +1,480 @@
+mig_biz_summ
+
+adw etl document
+
+kevin trace
+sa workly
+
+cat test.csv|hexdump -C
+awk -F"," '{print NF}' test.csv|hexdump -C
+
+awk -F"," '{print NF}' test.csv
+awk -F"," '{print NF}' test.csv|hexdump -C
+
+
+cat test.csv |hexdump -C
+
+echo ","|hexdump -C
+
+dos2unix test.csv
+
+
+ls -rlht
+
+mv test.csv.back test.csv
+
+awk -F',' '{print $2}' test.csv 
+
+
+cat test.csv |hexdump -C
+echo "." |hexdump -C
+echo "abc"|hexdump -C
+
+
+
+coalesce(TRX_MONTH,trunc(TO_DATE('${etlvar::TXDATE}', 'YYYY-MM-DD')-1,'MONTH')) 
+select trunc(add_months(SYSDATE,-1),'mm') from dual
+
+YYYYY
+select to_date(to_char(last_day(add_months(SYSDATE,-1)),'YYYYMMDD'),'YYYYMMDD') from dual
+NNNNN
+select to_date(last_day(add_months(SYSDATE,-1)),'YYYYMMDD') from dual
+
+
+
+awk -F',' '{print NF}' TOTAL_GamerResearchCenterRecord.csv|sort|uniq
+
+awk -F',' '{print NF}' TOTAL_GamerResearchCenterRecord.csv|sort|uniq
+
+awk -F',' '{if (NF==13) print $0}' abnormal.csv|head -  
+
+awk -F',' '{if (NF==53) print $0}' bmrpt_output_ict_2020-05-01.csv | wc -l
+
+SELECT * FROM  all_indexes
+
+
+select * from MIG_ADW.MBIRDIE_COUPON_USG_HIST 
+where to_date('20191025','YYYYMMDD') between START_DATE and END_DATE
+
+
+
+
+
+
+
+awk  '{print substr(FILENAME,14,8)"|" $0}' ticket_usage_20191016.txt|head
+
+
+
+crontab -l
+
+
+
+cat /home/adwbat/script/RUN_EA_JOB.ksh
+
+
+perl -e 'use Date::Manip; $date = DateCalc("today", "- 1 days", $err); print &UnixDate($date, "'%Y%m%d'");'
+
+20191111
+
+
+perl -e 'use Date::Manip; print &UnixDate(DateCalc("20200101", "- 1 months", \$err), "%Y%m");'
+&UnixDate(DateCalc("20200101", "- 1 months", \$err), "%Y%m")
+
+update sql 
+
+
+
+/opt/etl/prd/etl/preprocess/USR/rerun
+
+/opt/etl/prd/etl/preprocess/USR/process
+
+/opt/etl/prd/etl/DATA/receive  
+/opt/adw/DATA/receive
+
+/opt/etl/prd/etl/DATA/process
+
+/opt/etl/prd/etl/DATA/complete/ADW/20191115 
+
+
+/opt/etl/prd/etl/LOG/USR/20191122
+
+
+
+
+sftp skytree@10.16.9.166
+g5N6AKZacZ3JAY8L
+
+
+
+
+
+select * from prd_etl.ETL_JOB_QUEUE where ETL_JOB = 'U_NORTON_RPT'
+
+Select * from prd_etl.etl_job where etl_job like '%NORTON%'
+
+
+
+
+/home/adwbat/script/RUN_EA_JOB.ksh u_norton_rpt
+
+ps -ef | grep -i norton
+
+
+ kill -9  14237 
+
+
+ dos2unix GamerInGameTransactionRecord.csv
+head -n2 GamerInGameTransactionRecord.csv |hexdump -C
+awk -F"," '{print $8}' GamerInGameTransactionRecord.csv|sort|uniq >a
+
+ awk -F"," '{print $8}' GamerInGameTransactionRecord.csv|sort|uniq
+
+
+ awk -F"," '{print $8}' GamerInGameTransactionRecord.csv|head
+ awk -F"," '{aa=0; aa=aa+$8; print NR"--"aa}' GamerInGameTransactionRecord.csv|head
+awk -F"," '{aa=0; aa=aa+$8; print NR"--"aa}' GamerInGameTransactionRecord.csv
+
+awk -F"," '{aa=0; aa=aa+$8; print NR"--"aa}'GamerInGameTransactionRecord.csv
+
+
+non expire hist
+
+
+
+
+ps -ef
+
+
+ps -ef | grep -i 
+
+
+
+/opt/etl/prd/etl/lock
+
+
+
+
+
+
+conference,number,conference
+
+
+
+
+
+
+
+/opt/etl/prd/etl/LOG> grep -i birdie_game *log|head
+/opt/etl/prd/etl/LOG> grep -i birdie_game *log|grep 2019-12-05
+/opt/etl/prd/etl/preprocess/daemon/log
+/opt/etl/prd/etl/preprocess/daemon/log> view pull_ftpx.d_birdie_gamer_info.log.45054
+
+
+
+
+
+
+recall
+
+
+/home/adwbat/log
+
+
+
+
+
+
+
+
+
+ 002_T 
+
+
+
+date '20200101'
+
+
+
+
+
+mutt eloise_wu@Smartone.com -s "mo erp" -a "19.11 DailyCost_all.csv.gz" -a "19.12 DailyCost_all.csv.gz"
+
+
+
+
+
+
+[16:33:23] Compare current txdate '2020-01-15' with new txdate '2020-01-16'
+           Check data file duplicate...
+           Convert control file dir.b_birdie_create_info20200116.
+           Update job status to 'Pending' for ADW, B_BIRDIE_CREATE_INFO, 2020-01-16
+           Mark data date ADW, B_BIRDIE_CREATE_INFO, 2020, 1, 16.
+           Move data file(s) to queue directory...
+           Move 'ADW_B_BIRDIE_CREATE_INFO_20200116.dir' to queue directory.
+           Move dir.b_birdie_create_info20200116 to /opt/etl/prd/etl/DATA/complete/ADW/20200116/dir.b_birdie_create_info20200116
+
+
+ls -lrth /opt/etl/prd/etl/DATA/queue|grep CREATE
+
+
+
+
+
+ env|grep cog
+
+
+
+
+
+
+
+
+We created a number (21683285) for convenience to directly contact GZ office colleague’s ext from HK local/mobile, calling step as follows.
+
+ 
+
+
+	
+Call 21683285
+	Enter GZ co
+
+
+
+
+/opt/etl/prd/etl/preprocess/daemon/log> cd pull_cp.d_nsu_pend_chgpln.log.19201
+
+/opt/etl/prd/etl/LOG> grep -i D_NSU_PEND_CHGPLN *log
+etlagent_20200218.log:[2020-02-18 15:58:12] GETLOG: GETLOG NSU 20200117 d_nsu_pend_chgpln0010.pl.0.log
+etlagent_20200218.log:[2020-02-18 15:58:12] Get the log file '/opt/etl/prd/etl/LOG/NSU/20200117/d_nsu_pend_chgpln0010.pl.0.log'
+
+
+
+
+
+
+
+
+/opt/etl/prd/etl/preprocess/daemon/log> ps -ef|grep nsu
+adwbat   18678 18396  0 12:02 ?        00:00:00 /bin/ksh ./pull_ftpx.ksh d_nsu_ott_map_info 20200218120159.11739 1016 20200218 20200118 Y N
+adwbat   18937 18595  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_dealer 20200218120159.11739 364 20200218 20200118 Y N
+adwbat   19036 18722  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_du_disc_info 20200218120159.11739 367 20200218 20200118 Y N
+adwbat   19053 18636  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_dialed_digits 20200218120159.11739 365 20200218 20200118 Y N
+adwbat   19384 18508  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_breakdown_code 20200218120159.11739 360 20200218 20200118 Y N
+adwbat   19488 18948  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_inv_header 20200218120159.11739 372 20200218 20200118 Y N
+adwbat   20204 19542  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_sales_ledger 20200218120159.11739 381 20200218 20200118 Y N
+adwbat   20468 19867  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_subr_email 20200218120159.11739 385 20200218 20200118 Y N
+adwbat   20469 19743  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_shopnsave_mapping_ref 20200218120159.11739 383 20200218 20200118 Y N
+adwbat   20916 20243  0 12:02 ?        00:00:00 /bin/ksh ./pull_cp.ksh d_nsu_subr_usg 20200218120159.11739 390 20200218 20200118 Y N
+
+mount point
+
+
+ps -ef |grep -i subr_email
+
+kill 16828 16534
+
+
+
+
+
+
+/opt/etl/prd/etl/preprocess/daemon/log> cat pull_cp.d_nsu_subr_email.log.16534
+
+
+
+cat MALLANALYTIC_SGW_20200312141622_0016.DAT | head -2 | tail -1 | awk '{print substr($0,0,15)}'
+310380703999151
+
+
+cat /opt/modw/data/RealNameReg/database_report.txt | head -57 | tail -1 | awk '{print substr($0,0,15)}'
+
+
+cat /opt/modw/data/RealNameReg/database_report.txt | head -8973 | tail -1 | awk '{print substr($0,0,15)}'
+
+cat /home/modwbat/modw/data/RealNameReg/complete/backup/database_report_2020_03_26.txt | head -8973 | tail -1 >> /home/modwbat/modw/data/RealNameReg/complete/database_report_2020_03_26.txt
+cat /home/modwbat/modw/data/RealNameReg/complete/backup/database_report_2020_03_26.txt | head -1 > /home/modwbat/modw/data/RealNameReg/complete/database_report_2020_03_26.txt
+
+
+
+
+
+
+[下午5:33] Rick Huang
+    哦，我知道了，dwexaprd01是production， 连不到UAT场的
+​[下午5:33] Rick Huang
+    一时忘记了
+​[下午5:35] Eloise Wu
+    想搞清楚怎么连
+​[下午5:36] Eloise Wu
+    那为什么在etl06连mig_adw
+​[下午5:36] Eloise Wu
+    就可以
+​[下午5:37] Rick Huang
+    因为prd
+​[下午5:38] Rick Huang
+    adw同migadw是同一个db的两个acount
+​[下午5:38] Rick Huang
+    而nbpuat和nbpdw是两个db
+
+
+
+[下午5:39] Eloise Wu
+    之前一直想连连不到
+
+​[下午5:40] Rick Huang
+    肯定连不到啦，你tnsping下就知道了，根本就没配
+
+
+
+
+
+
+select  t.partition_name,t.num_rows from all_tab_partitions t where table_name = 'SMSFW_CDR'
+
+select * from all_tab_partitions 
+
+SELECT * FROM TBL_TEST PARTITION(TBL_TEST_200110)
+
+
+
+
+select 'INSERT INTO PRD_ADW.'||TABLE_NAME || ' SELECT * FROM MIG_ADW.' ||TABLE_NAME  from dba_tables where table_name like 'BW%' AND OWNER LIKE 'MIG_ADW'
+
+
+define trx_mth=to_date('$etlvar::TXMONTH','YYYY-MM-DD');//20200402
+  to_date('202004','YYYY-MM-DD'),
+
+//20200402
+set define on;
+define trx_mth=to_date('$etlvar::F_D_MONTH[1]','YYYY-MM-DD');
+
+etlvar::genFirstDayOfMonth($etlvar::TXDATE);
+//20200301
+
+
+
+        ,max(p.cust_num) keep(dense_rank first order by p.start_date desc,p.subr_sw_on_date desc) cust_num
+        ,max(p.subr_num)keep(dense_rank first order by p.start_date desc,p.subr_sw_on_date desc) subr_num
+        ,max(p.subr_sw_on_date)keep(dense_rank first order by p.start_date desc,p.subr_sw_on_date desc) subr_sw_on_date
+
+macau and dw job need create_ts and refresh_ts
+
+
+
+          CASE
+             WHEN (CASE
+                      WHEN ce.event_type_id = 15 THEN ce.event_attributes_7
+                      ELSE ce.event_attributes_3
+                   END) IN
+                     ('20VI', '20VB', '30VI', '30VB')
+             THEN
+                SUBSTR (ce.event_attributes_36,
+                        INSTR (ce.event_attributes_36, '^AOV:', 1) + 5,
+                        8)
+             ELSE
+                ' '
+          END
+             AS BY_2ND_SIM
+
+
+
+to_date('$etlvar::F_D_MONTH[3]' , 'YYYY-MM-DD')
+
+lftp ftpsvc01 -u SMC/dw_ftp,dw000000 -p 2026 <<FOftp
+    set ftp:ssl-allow true
+    set ftp:ssl-force true
+    set ftp:ssl-protect-data true
+    set ftp:ssl-protect-list true
+    set ftps:initial-prot
+    set xfer:clobber on
+    cd /world/TEAMWORK/tracking_rpt/BM_RPT_SUMM
+    mput  $OUTFILE1
+    mput  $OUTFILE2
+    quit
+FOftp
+
+
+
+
+
+[下午2:49] Kevin Ou
+    iconv -f BIG5-HKSCS -t UTF8  source_file > new_file
+
+
+
+cat tmp_gift.csv | tail -n 560000 | head -n 2
+
+
+
+sqlldr userid=mig_adw/Dwu2091#_mw@$TDPID control='/opt/etl/filein/tmp/el/tmp_gift_1.ctl' log='/opt/etl/filein/tmp/el/a.log'
+man sqlldr
+
+view a.log
+tail tmp_gift_1.csv |awk -F'\t' '{print $31 "-" length($31)}'
+
+
+ls -rlth
+
+tail tmp_gift_1.csv |awk -F'\t' '{print  "-" blength($22)}' 
+
+
+
+cat tmp_gift.csv | head -n 560250 | tail -n +560000 > tmp_gift_1.csv
+
+
+hadoop fs -cat /HDS_VOL_HIVE/miep/SMCIN_20200513_20200513072842_01_proc_2.gz|gzip -dc |Head
+
+
+
+. go
+
+tail -f dw_load_mme_cdr_20200619183836.log
+
+
+
+ls -rlth
+
+ nohup ksh dw_load_mme_cdr.ksh &
+
+ls|grep mme
+
+kill -9 32467 32468
+
+ps -ef|grep mme
+
+ls|head
+
+ ls|wc -l 
+
+ view  /app/adwbat/BP/script/dw_load_mme_cdr.ksh 
+
+
+ crontab -l |grep mme
+
+
+id
+ls
+lws
+
+file x_bm_comm_rpt_ict_excost.txt         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

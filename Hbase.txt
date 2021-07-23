@@ -1,0 +1,52 @@
+1,a1,b1,c1,11
+2,a2,b2,c2,22
+3,a3,b3,c3,33
+4,a4,b4,c4,44
+5,a5,b5,c5,55
+
+  hbase> get 'ns1:t1', 'r1'
+  hbase> get 'emp', '1'
+  hbase> get 't1', 'r1', {COLUMN => 'c1'}
+put 'table name','row','Column family:column name','new value'
+  hbase> scan 'hbase:meta'
+  hbase> scan 'hbase:meta', {COLUMNS => 'info:regioninfo'}
+  hbase> delete 'ns1:t1', 'r1', 'c1', ts1
+  hbase> delete 't1', 'r1', 'c1', ts1
+  hbase> delete 't1', 'r1', 'c1', ts1, {VISIBILITY=>  'PRIVATE|SECRET'}
+delete 'emp','1','personal data:city',3544565465
+deleteall 'emp','1'
+
+
+hbase(main):002:0> help
+
+
+hbase(main):005:0> scan '/HDS_VOL_HBASE/FW_CDR_TEST',{LIMIT => 10}
+ROW                                      COLUMN+CELL                                                                                                         
+ 001.000.000.000_20200219205838          column=cf:json_value, timestamp=1582351212664, value={"send_volume":"0","receive_volume":"13960","service":"161","ds
+                                         t":"121.202.142.64"}                                                                                                
+ 001.000.000.000_20200219205838          column=cf:src, timestamp=1582351212664, value=1.0.0.0                                                               
+ 001.000.000.000_20200219205838          column=cf:start_datetime, timestamp=1582351212664, value=2020-02-19 20:58:38                                        
+ 001.000.000.001_20200111011130          column=cf:json_value, timestamp=1578981612957, value={"send_volume":"0","receive_volume":"0","service":"60282","dst"
+                                         :"121.202.147.177"}        
+create 'el1:t1', {NAME => 'f1', VERSIONS => 5}
+
+  hbase> create 'ns1:t1', {NAME => 'f1', VERSIONS => 5}
+
+Create a table with namespace=default and table qualifier=t1
+  hbase> create 't1', {NAME => 'f1'}, {NAME => 'f2'}, {NAME => 'f3'}
+  hbase> # The above in shorthand would be the following:
+  hbase> create 't1', 'f1', 'f2', 'f3'
+
+  hbase> t1 = create 't1', 'f1'
+
+  hbase> scan 'hbase:meta'
+  hbase> scan 'hbase:meta', {COLUMNS => 'info:regioninfo'}
+  hbase> scan 'ns1:t1', {COLUMNS => ['c1', 'c2'], LIMIT => 10, STARTROW => 'xyz'}
+
+  hbase> scan 't1', {RAW => true, VERSIONS => 10}
+  hbase> t = get_table 't'
+  hbase> t.scan
+
+
+
+

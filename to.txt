@@ -1,0 +1,16 @@
+FWCDRDIR=${DATADIR}/FWCDR
+
+
+hadoop fs -ls /
+
+
+
+
+
+hadoop fs -ls /HDS_VOL_HIVE/FWCDR_PQ
+
+hadoop fs -ls /HDS_VOL_HIVE/FWCDR
+
+
+/opt/mapr/spark/spark-2.4.4/bin/spark-submit --master yarn --deploy-mode cluster /app/HDSBAT/script/dw_load_fwcdr_parquet.py
+

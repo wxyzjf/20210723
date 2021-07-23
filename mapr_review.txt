@@ -1,0 +1,308 @@
+
+
+hive> show partitions h_fwcdr_pq;
+
+
+
+
+in01: get file from 10
+hadoop fs -copyToLocal maprfs://newc.hksmartone.com/HDS_VOL_TMP/test_el .
+Step 2) sftp hdsbat@bigdataetl02-10g . 
+            *file put to /app/HDSDATA
+
+Step 2) sftp mapr@bigdataetl02-10g . 
+            *file put to /app/HDSDATA/par_fwcdr/input/par
+
+hadoop distcp maprfs://bigdatamr01-10g.hksmartone.com/HDS_VOL_HIVE/FWCDR/start_date=${filedate}/fwcdr_ldr*gz /HDS_VOL_HIVE/FWCDR/start_date=${filedate}
+hadoop distcp maprfs://newc.hksmartone.com/HDS_VOL_HIVE/FWCDR_PQ /HDS_VOL_HIVE/FWCDR_PQ
+
+    hadoop fs -ls maprfs://bigdatamr08-10g/
+    hadoop fs -ls maprfs://apmaprp.hksmartone.com/
+
+hadoop distcp maprfs://bigdatamr08-10g/HDS_VOL_HIVE/FWCDR_PQ/* /HDS_VOL_HIVE/FWCDR_PQ
+hadoop distcp maprfs://bigdatamr08-10g.hksmartone.com/HDS_VOL_HIVE/FWCDR_PQ/* /HDS_VOL_HIVE/FWCDR_PQ
+
+hadoop fs -copyToLocal maprfs://newc.hksmartone.com/HDS_VOL_HIVE/FWCDR/start_date=20210125 .
+
+file:///app/HDSDATA/SPK_OUTPUT/t_start_3=20200723
+
+etl02
+su - mapr
+/opt/mapr/hive/hive-2.3/bin
+./hive
+
+--deploy-mode cluster
+
+-----------------------------------------------------------------
+http://bigdatamr10.hksmartone.com:18080/
+http://bigdatamr09.hksmartone.com:8088/cluster/scheduler
+http://bigdataetl02.hksmartone.com:8080/
+http://bigdataetl02.hksmartone.com:18080/history/local-1607049263146/executors/
+http://bigdataetl02.hksmartone.com:18080/
+
+https://apmaprp05.hksmartone.com:8090/cluster
+http://bigdataetl02.hksmartone.com:4040/
+
+https://apmaprp05.hksmartone.com:8090/proxy/application_1606889589854_0110/executors/
+
+new:
+https://apmaprp05.hksmartone.com:8090/cluster
+apmaprp02:18080
+https://apmaprp05.hksmartone.com:8090/proxy/application_1610953502782_0190/
+https://apmaprp04.hksmartone.com:19890/jobhistory/app
+yarn logs -applicationId application_1610953502782_0309
+
+
+https://apmaprp02.hksmartone.com:18080/
+
+-----------------------------------------------------------------
+
+bigdataetl01:::mapr/mapr
+https://apmaprp01.hksmartone.com:8443/
+> Spark History Server
+https://apmaprp01.hksmartone.com:18480/
+>running:
+https://apmaprp05.hksmartone.com:8090/
+yarn logs -applicationId application_1614173005813_15630
+
+
+-----------------------------------------------------------------
+
+  chmod 777 $tmpsql
+  /opt/mapr/hive/hive-2.3/bin/hive -f $tmpsql 1>>$LOGFILE 2>>$LOGFILE
+
+set mapreduce.map.memory.mb=6144;
+set mapreduce.reduce.memory.mb=16218;
+
+set hive.cli.print.header=true;
+
+
+cat /app/HDSBAT/reload/fw/dw_put_fwcdr_maprdb.sh
+
+hadoop distcp maprfs://bigdatamr01-10g.hksmartone.com/HDS_VOL_HIVE/H_MSC_CDR/part_key=$optdate/MSC*.gz /HDS_VOL_HIVE/H_MSC_CDR/part_key=$optdate
+
+
+/opt/mapr/spark/spark-2.4.4/bin/spark-submit --master yarn --deploy-mode cluster dw_load_fwcdr_parquet.py 
+
+
+ /opt/mapr/spark/spark-2.4.4/bin/spark-submit --master yarn --deploy-mode cluster test.py    
+
+
+        hadoop fs -rm -f /HDS_VOL_HDNN/input/GPRS/${fname} 1>> $LOGFILE 2>> $ERRFILE
+
+        hbase_importTSV "$table_column" "/HDS_VOL_HDNN/GPRS" "/HDS_VOL_HDNN/input/GPRS/${fname}" "|"
+
+alter table h_ctr_cdr add if not exists partition (trx_date='20200423',event_id='5157'); 
+load data LOCAL inpath '/app/HDSBAT/cvtdata/CTR_CDR/CTR_20200423_5157_p3_20200424070142_00.gz' into table h_ctr_cdr partition(trx_date='20200423',event_id='5157');
+
+
+
+hadoop fs -copyFromLocal ${CNSSDATADIR}/$cv_file_name /HDS_VOL_HIVE/CNSS/cnss_s11/part_key=$part_time 1>>$LOGFILE 2>&1
+
+
+
+alter table cnss_s11 add if not exists partition (part_key='20200420') LOCATION '/HDS_VOL_HIVE/CNSS/cnss_s11/part_key=20200420'; 
+
+
+
+
+CREATE TABLE `h_fw_cdr`(
+  `batch_no` string, 
+  `start_datetime` string, 
+  `src` string, 
+  `json_value` string)
+PARTITIONED BY ( 
+  `start_date` string)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='|', 
+  'serialization.format'='|') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'maprfs:/HDS_VOL_HIVE/FWCDR'
+TBLPROPERTIES (
+  'transient_lastDdlTime'='1565257228')
+
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=’,’ -Dimporttsv.columns=“HBASE_ROW_KEY,cf:col01” ‘YOUR_HBASE_TABLE’ ‘YOUR_HDFS_DIRECTORY’
+
+
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv 
+-Dimporttsv.separator=',' -Dimporttsv.columns="HBASE_ROW_KEY,cf:str_a,cf:str_b,cf:str_c,cf:info" 'test_T' '/test/test.csv'
+ 
+
+
+        hbase_importTSV "$table_column" "/HDS_VOL_HDNN/GPRS" "/HDS_VOL_HDNN/input/GPRS/${fname}" "|"
+
+
+
+hbase(main):008:0> quit
+[mapr@bigdatamr10 ~]$ maprcli table create
+
+select count(*) from `/HDS_VOL_HIVE/FWPQ` where src =' 10.149.23.23';
+
+
+login sqlline  sqlline -u "jdbc:drill:zk=bigdatamr08.hksmartone.com:5181,bigdatamr09.hksmartone.com:5181,bigdatamr10.hksmartone.com:5181" -n mapr -p Smart2019
+
+check the col1 max and min value  select min(col1),max(col1) from dfs.`/HDS_VOL_HIVE/TBL_PQ/*`
+
+
+select * from all_tables where table_name like '%SMCIN_CALL_RECS%'
+
+
+http://bigdatamr08.hksmartone.com:8088/cluster
+http://bigdatamr10.hksmartone.com:18080/history
+http://bigdatamr10.hksmartone.com:4041/
+http://bigdatamr10.hksmartone.com:4040/
+http://bigdatamr10.hksmartone.com:4042/
+
+df -kh .
+hadoop fs -cat /HDS_VOL_HIVE/miep/SMCIN_20200513_20200513072842_01_proc_2.gz|gzip -dc |Head
+spark-submit --master local --conf spark.sql.warehouse.dir=/opt/tmp/el/test/spark-warehouse 2.py
+
+
+hadoop jar /home/mapr/pq_tools/parquet-tools-1.9.0.jar cat /HDS_VOL_TMP/test_el_par/part-00000-316f9dc5-3792-4b66-89cd-7a6c3153c68e-c000.gz.parquet | head -500
+
+
+hadoop jar /home/mapr/pq_tools/parquet-tools-1.9.0.jar meta /HDS_VOL_TMP/test_el_par/part-00000-316f9dc5-3792-4b66-89cd-7a6c3153c68e-c000.gz.parquet | head -500
+
+
+hadoop jar /home/mapr/pq_tools/parquet-tools-1.9.0.jar dump -n /HDS_VOL_TMP/test_el_par/part-00000-316f9dc5-3792-4b66-89cd-7a6c3153c68e-c000.gz.parquet | head -500
+
+
+
+alter table t_sreward add if not exists partition (part_key='20200720');
+alter table t_sreward drop partition (part_key='20200721');
+load data LOCAL inpath '/app/HDSBAT/cvtdata/reload/unload_bp_s_reward_subr_list_SHK_Mall.dat.20200720' 
+into table t_sreward partition(part_key=20200720);
+
+insert overwrite 
+  directory '/HDS_VOL_TMP/ic/adaptor_5g_by_day_<20200601>'
+  row format delimited fields terminated by ','
+select 
+  msisdn,
+  service_name,
+  timeperiod,
+  part_key
+
+CREATE TABLE `t_sreward`(
+   Subr_Num  string,
+   Age_Range  string,
+   Gender  string,
+   Register_Address_District  string,
+   Current_SHK_Plan_Group  string,
+   Free_Data_Entitlement  string)
+PARTITIONED BY ( 
+  part_key string)
+ROW FORMAT DELIMITED 
+  FIELDS TERMINATED BY '|' 
+LOCATION
+  'maprfs:/HDS_VOL_TMP/el'
+
+
+hadoop fs -mkdir maprfs://bigdatamr08-10g:7222/tmp/el/smcin/part_key=20200720
+hadoop fs -chmod 777 maprfs://bigdatamr08-10g:7222/tmp/el/smcin/part_key=20200720
+hadoop distcp /HDS_VOL_HIVE/smcin/part_key=20200720/* maprfs://bigdatamr08-10g.hksmartone.com/tmp/el/smcin/part_key=20200720
+
+hadoop fs -du -h 
+
+hadoop jar /home/mapr/pq_tools/parquet-tools-1.9.0.jar meta /HDS_VOL_TMP/el_test_par | grep "row group" | head -10
+
+hadoop jar /home/mapr/pq_tools/parquet-tools-1.9.0.jar meta /HDS_VOL_TMP/el_test_par2 | grep "row group" | head -10
+
+
+
+bigdataetl01:::mapr/mapr
+https://apmaprp01.hksmartone.com:8443/
+> Spark History Server
+https://apmaprp01.hksmartone.com:18480/
+>running:
+https://apmaprp05.hksmartone.com:8090/
+yarn logs -applicationId application_1614173005813_15630
+
+yarn logs -applicationId application_1620785077583_0285
+
+
+
+----------------------------------------------------------------------
+from __future__ import print_function
+
+from pyspark.sql import SparkSession
+
+from pyspark.sql import Row
+
+from pyspark.sql.types import *
+
+from datetime import datetime,timedelta
+
+from pyspark import SparkContext,SparkConf
+
+import sys
+
+spark = SparkSession \
+    .builder \
+    .appName("fwcdr") \
+    .config("spark.executor.memory","4G")\
+    .getOrCreate() 
+    #.config("spark.master","yarn") \
+     #.config('spark.executor.instances',30) \
+
+dffwpq=spark.read.parquet("//HDS_VOL_HIVE/FWCDR_PQ/trx_date=20210123")
+#dffwpq=spark.read.parquet("//HDS_VOL_HIVE/FWCDR_PQ/trx_date=20210123")
+dffwpq.printSchema()
+
+dffwpq.createOrReplaceTempView("t_pq")
+
+
+df = spark.sql("select count(*) from t_pq")
+        #.write
+        #.partitionBy('pkey')
+        #.save("/HDS_VOL_HIVE/el_tmp/trx_date=20210123",mode='append',compression='gzip')      
+df.show()
+
+----------------------------------------------------------------------
+4041
+4042
+4040
+18080
+8088
+
+mapr client
+
+ultimate -n 
+
+java heap space
+memory driver excutor
+free -g
+core
+
+for f in `seq 1000000`; do echo $RANDOM >> test_1m.csv; done;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
